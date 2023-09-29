@@ -1,0 +1,13 @@
+ <Box bg={'white'} display={'flex'} mb={'2%'}  gap={'1%'} mt={'10%'}>
+                  <Image w={'4%'} src={Pizza1} />
+                  <Heading>Пицца</Heading>
+              </Box> 
+
+
+
+
+
+
+
+
+              

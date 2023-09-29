@@ -1,21 +1,30 @@
+
+
 import { Box, Image } from "@chakra-ui/react";
 import React, { Component } from "react";
 import Slider from "react-slick";
 import Carausel_img from '../assets/banner_carausel.png'
 
+function Carausel() {
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows:false,
+  };
+  return (
+   
 
 
 
-export default class SimpleSlider extends Component {
-  render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
-    return (
+
+
+
+
+
       <Box width={'100%'} m={'5% 0% 10% 0%'}>
         
         <Slider {...settings}>
@@ -32,5 +41,8 @@ export default class SimpleSlider extends Component {
         </Slider>
       </Box>
     );
-  }
+  
+  
 }
+
+export default Carausel

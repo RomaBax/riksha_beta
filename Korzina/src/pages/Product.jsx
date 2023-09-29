@@ -7,6 +7,13 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
+import sushi1 from '../assets/1.png'
+import sushi2 from '../assets/2.png'
+import sushi3 from '../assets/3.png'
+import sushi4 from '../assets/4.png'
+import sushi5 from '../assets/5.png'
+import sushi6 from '../assets/6.png'
+import { FaInstagram } from "react-icons/fa";
 
 import {BsInstagram } from "react-icons/bs";
 import axios, { formToJSON } from "axios";
@@ -29,8 +36,10 @@ import { useToast } from "@chakra-ui/react";
 import Carausel from "../components/Carausel";
 
 export const Products = () => {
+
   const [data, setData] = useState([]);
-    const {store,setStore} = useContext(BasketContext)
+  const {store,setStore} = useContext(BasketContext)
+
     const settings = {
       dots: true,
       infinite: true,
@@ -57,8 +66,9 @@ export const Products = () => {
   const [ Imgs, setImgs ] = useState()
   const [ Desc, setDesc ] = useState()
   const [ Title, setTitle ] = useState()
+  const [ Price, setPrice ] = useState()
 
-  let Todo = product => {Del ? setDel(false) : setDel(true), setImgs(product.thumbnail),setDesc(product.description), setTitle(product.title)} //если можна укаратить ;)
+  let Todo = product => {Del ? setDel(false) : setDel(true), setImgs(product.thumbnail),setDesc(product.description), setTitle(product.title),setPrice(product.price)} //если можна укаратить ;)
 
   return (
     <Box  w={'100%'} h={'auto'}>
@@ -96,13 +106,15 @@ export const Products = () => {
                             <Image src={Ellipse} />
                             <Text color={'gray'}>130 Ккал</Text>
                         </Box>
-            <Heading ml={'3%'} size={"md"}>{Title}</Heading>
+            <Heading ml={'3%'} size={"md"}>{product.title}</Heading>
             <Box ml={'3%'} w={'90%'} height={'80px'}  gap={2} display="flex" alignItems={"center"}>
               <Text>
-                {Desc}
+                {product.description}
               </Text>
             </Box >
-            <Box w={'100%'} justifyContent={'center'} alignItems={'center'} pl={'20%'} gap={'3%'} display={'flex'} mt={'5%'}>
+
+            <Box w={'100%'} justifyContent={'center'} alignItems={'center'} pl={'0%'} gap={'3%'} display={'flex'} mt={'5%'}>
+              <Heading size={'lg'}>{product.price}$</Heading>
             <Button size={'lg'} onClick={() => [Del ? setDel(false) : setDel(true), Todo(product)]}>Купить</Button>
               <Button size={'lg'} bgImage={Button1} colorScheme='orange' onClick={() => setStore((el) => [ ...el, product ])} >
                 <Text>В корзину</Text>
@@ -111,8 +123,8 @@ export const Products = () => {
           </GridItem>
 
 
-            <Box position='fixed' backdropFilter={'blue 8px'} top='0' left='0' w='100%' h='100%' display={Del ? 'flex' : 'none'} alignItems='center' justifyContent='center' zIndex='9'>
-              <Box boxShadow={'0px 0px 14px 0px rgba(34, 60, 80, 0.2)'} w='1200px' h='800px' bg='gray.100' borderRadius={'8px'} p={'1%'} position='relative'>
+            <Box position='fixed' backdropFilter={'blur(8px)'} top='0' left='0' w='100%' h='100%' display={Del ? 'flex' : 'none'} alignItems='center' justifyContent='center' zIndex='9'>
+              <Box boxShadow={'0px 0px 14px 0px rgba(34, 60, 80, 0.2)'} m={'1%'} w='1200px' h={{base:'650px',sm:'700px',md:'750px'}} bg='gray.100' borderRadius={'8px'} p={'1%'} position='relative'>
                 <Button position='absolute' colorScheme="orange"  onClick={() => setDel(false)}>X</Button>
                 <Box width={'80%'}>
                   <Image borderRadius={'8px'} w='100%' m={'5% 0% 5% 12%'} h='400px' src={Imgs}/>
@@ -120,6 +132,7 @@ export const Products = () => {
 <Box textAlign={'center'}>
                 <Heading size={'2xl'} mb={'2%'}>{Title}</Heading>
                 <Text>{Desc}</Text>
+                <Heading size={'xl'} m={'0.5% 2%'}>{Price}$</Heading>
                 <Button
       onClick={() =>
         toast({
@@ -132,7 +145,7 @@ export const Products = () => {
       }
       colorScheme="orange"
       size={'lg'}
-      mt={'5%'}
+      mt={'0%'}
     >
       Купить
     </Button>
@@ -146,7 +159,7 @@ export const Products = () => {
 
     <Pizza/>
 
-    <Box   w={'100%'}h={{base:'1000px',md:"600px"}} mt={{base:"10%"}}>
+    <Box   w={'100%'}h={{base:'1000px',md:"600px"}} mt={{base:"67%",sm:'10%'}}>
                 <Box  display={'flex'} gap={'1%'}>
                 <Heading>О компании</Heading>
                 <Image w={'3%'} src={About} />
@@ -169,16 +182,38 @@ export const Products = () => {
 
 
 
-        <Box gap={'29%'} display={'flex'} border={'1px solid red'} mt={'6%'} >
-            <Box  ml={'0%'} display={'flex'} w={'100%'}  >           
-            <Heading   w={'100%'} >А вы уже подписались на наш <span style={{color:'#E07153'}}>Instagram ?</span> </Heading>
+            <Box  width={'100%'} maxWidth={'1250px'} padding={'0 25px'} margin={'15% auto'}>
+    <Box  fontFamily={'open sans'}>
+        <Box display={{base:'inline',md:'flex'}} justifyContent={'space-between'} alignItems={'center'}>
+            <Box>
+              <Heading w={{base:'80%',md:'100%'}} Size={{base:'sm',md:'lg'}} color={'#1B1B1B'} fontWeight={'600'}>А вы уже подписались на наш <Heading Size={{base:'sm',md:'lg'}} color={'#E07153'} fontWeight={'600'} >Instagram?</Heading></Heading>
             </Box>
-
-            <Button size={'lg'} justifyContent={'center'} alignItems={'center'} w={'30%'} display={'flex'} borderRadius={'8px'} bgImage={Button1} colorScheme='orange' overflow='hidden'>
-                <BsInstagram />
-                <Heading textAlign={'center'} size='sm'> @baxramov_dev</Heading>
-            </Button>
+            <Box>
+              <Button display={'flex'} size={{base:'lg'}} alignItems={'center'} justifyContent={'center'} gap={'20px'}  color={'#FFF'}  colorScheme="orange" fontFamily={'open sans ,sans-serif'}><FaInstagram/>@baxramov_dev</Button>
+            </Box>
         </Box>
+      </Box>
+
+
+      <Box display={'grid'} w={'100%'} gridTemplateColumns={{base:'auto ',md:'auto auto'}} gap={'12px'} mt={'3%'} >
+            <Box display={'flex'} flexDirection={'column'} gap={'12px'}>
+              <Box display={'grid'} gridTemplateColumns={{base:'auto',md:'auto auto'}} gap={'12px'}>
+              <Image src={sushi1} w={'280px'} h={'254px'}/> 
+              <Image src={sushi2} w={'280px'} h={'254px'}/>
+              </Box> 
+               <Box>
+                  <Image src={sushi3} w={'573px'} h={'254px'}/>
+              </Box>
+            </Box>
+            <Box display={'flex'} gap={'13px'}>
+              <Box display={'flex'} flexDirection={'column'} gap={'12px'}> 
+              <Image src={sushi4} w={'299px'} h={'254px'}/> 
+              <Image src={sushi5} w={'299px'} h={'254px'}/>
+              </Box>
+              <Box>  <Image src={sushi6} w={'288px'} h={'520px'}/></Box>
+            </Box>
+      </Box>
+    </Box>
     </Box>
   );
 };

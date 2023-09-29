@@ -3,6 +3,7 @@ import { Box, Button, Container, Heading, Img, Text } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BasketContext } from "../context/BasketContext";
+import { BsFillCartFill } from "react-icons/bs";
 import Logo from '../assets/logo.png'
 import Burger_menu from "./Drawer";
 
@@ -15,7 +16,8 @@ export const Header = () => {
         display={"flex"}
         alignItems={"center"}
         justifyContent={"space-around"}
-        pt={"1%"}
+        pt={"0.5%"}
+        pb={{base:'0.5%',md:'0%'}}
       >
 
         <Burger_menu/>
@@ -48,7 +50,7 @@ export const Header = () => {
           <Text
             right={'-15px'}
             top={-2}
-            background={"red"}
+            background={"#E07153"}
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
@@ -56,10 +58,10 @@ export const Header = () => {
             w={'25px'}
             h={'25px'}
             position={"absolute"}
-            color={"white"}>
+            color={"black"}>
             {store.length}
           </Text>
-          <StarIcon fontSize={'30px'} />
+          <BsFillCartFill fontSize={'30px'} />
         </Box>
               </Link>
       </Container>

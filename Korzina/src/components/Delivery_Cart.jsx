@@ -8,8 +8,8 @@ import Friends from '../assets/img_Friend.png'
 function Delivery_Cart() {
     return (
         <>
-                <Box mt={'5%'} mb={'10%'}  display={'grid'} gridTemplateColumns={{base:"auto",sm:"auto",md:"auto auto",lg:"auto auto",xl:"auto auto","2xl":"auto auto auto"}} justifyContent={'center'} alignItems={'center'} gap={'20px'} >
-                    <Box w={'100%'} h={'280px'} bg={'#D2F6FF'} padding={'5%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
+                <Box  mt={'5%'} mb={'10%'}  display={'grid'} gridTemplateColumns={{base:"auto",sm:"auto",md:"auto auto",lg:"auto auto",xl:"auto auto","2xl":"auto auto auto"}} justifyContent={'center'} alignItems={'center'} gap={'20px'} >
+                    <Box borderRadius={'8px'} w={'100%'} h={'280px'} bg={'#D2F6FF'} padding={'5%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
 
 
                     <Box>
@@ -22,7 +22,7 @@ function Delivery_Cart() {
 
                     </Box>
 
-                    <Box w={'100%'} h={'280px'} bg={'#FFD8DA'} padding={'5%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
+                    <Box  borderRadius={'8px'} w={'100%'} h={'280px'} bg={'#FFD8DA'} padding={'5%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
 
 
 <Box>
@@ -37,14 +37,14 @@ function Delivery_Cart() {
 
 
 
-                    <Box  w={'100%'} h={'280px'} bg={'#DBFFCF'} padding={'5%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
+                    <Box borderRadius={'8px'}  w={'100%'} h={'280px'} bg={'#DBFFCF'} padding={'5%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
 
-                    <Box>
+                    <Box >
                             <Heading width={'85%'} mb={'2%'} size={'md'}>Приведи друга </Heading>
                             <Heading size={'xs'}>и получи 250 ₽ на бонусный счет</Heading>
                     </Box>
                     <Box w={'100%'} h={'149px'}  >
-                            <Img width={'50%'} ml={'50%'} justifyContent={'end'} src={Friends} alt="" />
+                            <Img  width={'50%'} ml={'50%'} justifyContent={'end'} src={Friends} alt="" />
                     </Box>
 
                     </Box>

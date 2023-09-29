@@ -10,8 +10,16 @@ import About_img from "../assets/img_About.png";
 
 
 function Sushi_str() {
-    const [data, setData] = useState([]);
-    const {setBasket} = useContext(BasketContext)
+  const [data, setData] = useState([]);
+  const {store,setStore} = useContext(BasketContext)
+
+    const [ Del, setDel ] = useState(false)
+  const [ Imgs, setImgs ] = useState()
+  const [ Desc, setDesc ] = useState()
+  const [ Title, setTitle ] = useState()
+  const [ Price, setPrice ] = useState()
+
+  let Todo = product => {Del ? setDel(false) : setDel(true), setImgs(product.thumbnail),setDesc(product.description), setTitle(product.title),setPrice(product.price)} //если можна укаратить ;)
   
     useEffect(() => {
     
@@ -39,38 +47,68 @@ function Sushi_str() {
         <Box>
     
    
-          <Grid mb={'5%'} mt={"4%"}   templateColumns={{base:"auto ", sm:'auto',md:'auto auto',lg:'auto auto',xl:"auto auto auto" , '2xl':'auto auto auto '}} gap={"1%"}>
-            {data.slice(3,12).map((product) => (
-              <GridItem borderRadius={'10px'} p={'0% 0% 5% 0%'} boxShadow={'0px 0px 14px 0px rgba(34, 60, 80, 0.2)'} bg={'white'} key={product.id}  >
-    
-                <Image
-                borderRadius={'10px'}
-                  src={product.images[0]}
-                  w={"100%"}
-                  h={250}
-                  objectFit={"cover"}
-                  mb={"3%"}
-                />
-                 <Box ml={'3%'} display={'flex'} gap={'3%'} mb={'1%'}>
-                                <Text color={'gray'}>200 грамм</Text>
-                                <Image src={Ellipse} />
-                                <Text color={'gray'}>130 Ккал</Text>
-                            </Box>
-                <Heading ml={'3%'} size={"md"}>{product.title}</Heading>
-                <Box ml={'3%'} w={'90%'} height={'80px'}  gap={2} display="flex" alignItems={"center"}>
-                  <Text   >
-                    {product.description}
-                  </Text>
-                </Box >
-                <Box w={'100%'} justifyContent={'center'} alignItems={'center'} pl={'20%'} gap={'3%'} display={'flex'} mt={'5%'}>
-                <Button size={'lg'}>Купить</Button>
-                  <Button size={'lg'} bgImage={Button1} colorScheme='orange' onClick={() => addToBasket(product)} >
-                    <Text>В корзину</Text>
-                  </Button>
-                  </Box>
-              </GridItem>
-            ))}
-          </Grid>
+        <Grid mb={'5%'} mt={"4%"}   templateColumns={{base:"auto ", sm:'auto',md:'auto auto',lg:'auto auto',xl:"auto auto auto" , '2xl':'auto auto auto '}} gap={"1%"}>
+          {data.slice(13,22).map((product) => (
+            <GridItem borderRadius={'10px'} p={'0% 0% 5% 0%'} boxShadow={'0px 0px 14px 0px rgba(34, 60, 80, 0.2)'} bg={'white'} key={product.id}  >
+  
+              <Image
+              borderRadius={'10px'}
+                src={product.images[0]}
+                w={"100%"}
+                h={250}
+                objectFit={"cover"}
+                mb={"3%"}
+              />
+               <Box ml={'3%'} display={'flex'} gap={'3%'} mb={'1%'}>
+                              <Text color={'gray'}>200 грамм</Text>
+                              <Image src={Ellipse} />
+                              <Text color={'gray'}>130 Ккал</Text>
+                          </Box>
+              <Heading ml={'3%'} size={"md"}>{product.title}</Heading>
+              <Box ml={'3%'} w={'90%'} height={'80px'}  gap={2} display="flex" alignItems={"center"}>
+                <Text   >
+                  {product.description}
+                </Text>
+              </Box >
+              <Box w={'100%'} justifyContent={'center'} alignItems={'center'} pl={'20%'} gap={'3%'} display={'flex'} mt={'5%'}>
+              <Button size={'lg'} onClick={() => [Del ? setDel(false) : setDel(true), Todo(product)]}>Купить</Button>
+                <Button size={'lg'} bgImage={Button1} colorScheme='orange' onClick={() => setStore((el) => [ ...el, product ])} >
+                  <Text>В корзину</Text>
+                </Button>
+                </Box>
+                <Box position='fixed' backdropFilter={'blur(8px)'} top='0' left='0' w='100%' h='100%' display={Del ? 'flex' : 'none'} alignItems='center' justifyContent='center' zIndex='9'>
+              <Box boxShadow={'0px 0px 14px 0px rgba(34, 60, 80, 0.2)'} m={'1%'} w='1200px' h={{base:'650px',sm:'700px',md:'750px'}} bg='gray.100' borderRadius={'8px'} p={'1%'} position='relative'>
+                <Button position='absolute' colorScheme="orange"  onClick={() => setDel(false)}>X</Button>
+                <Box width={'80%'}>
+                  <Image borderRadius={'8px'} w='100%' m={'5% 0% 5% 12%'} h='400px' src={Imgs}/>
+                </Box>
+<Box textAlign={'center'}>
+                <Heading size={'2xl'} mb={'2%'}>{Title}</Heading>
+                <Text>{Desc}</Text>
+                <Heading size={'xl'} m={'0.5% 2%'}>{Price}$</Heading>
+                <Button
+      onClick={() =>
+        toast({
+          title: 'Успешно',
+          description: "Покупка прошла успешно",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+      colorScheme="orange"
+      size={'lg'}
+      mt={'0%'}
+    >
+      Купить
+    </Button>
+                </Box>
+              </Box>
+            </Box>
+            </GridItem>
+            
+          ))}
+        </Grid>
         </Box>
         </Box>
   

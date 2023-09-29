@@ -6,7 +6,7 @@ import { BsFacebook,BsInstagram,BsGithub } from "react-icons/bs";
 function Footer() {
   return (
     <>
-    <Box position={''} bottom={'0'}   gap={'5%'} display={'grid'}  gridTemplateColumns={{base:"auto auto ",sm:'auto auto',md:"auto auto",lg:'auto auto auto auto',xl:'auto auto auto auto','2xl':'auto auto auto auto'}} bg={'#1B1B1B'} p={'5% 5%'} w={'100%'} >
+    <Box position={'sticky'} top={'100%'}   gap={'5%'} display={'grid'}  gridTemplateColumns={{base:"auto auto ",sm:'auto auto',md:"auto auto",lg:'auto auto auto auto',xl:'auto auto auto auto','2xl':'auto auto auto auto'}} bg={'#1B1B1B'} p={'5% 5%'} w={'100%'} >
       <Box w={'15%'}>
         <Image w={'100%'} src={Logo}/>
         </Box>
