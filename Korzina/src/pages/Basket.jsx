@@ -11,6 +11,7 @@ export const Basket = () => {
 
   const [count, setCount] = useState(0);
   const [price, setPrice] = useState()
+  let Todo = item => {setPrice(item.price)}
 
   const decreaseCount = () => {
     if (count > 0) {
@@ -31,14 +32,14 @@ export const Basket = () => {
         !store.length && <Heading my={10}fontSize={60} textAlign={'center'}>Еще нет товара !</Heading>
       }
       {store.map((item) => (
-        <HStack mt={'2%'}  mb={5} key={item.length} borderRadius={'8px'} boxShadow={'0px 0px 14px rgba(34, 60, 80, 0.2)'} > 
-          <Box   width={'10%'} height={'auto'}>
+        <HStack mt={'2%'} pr={'1%'}  mb={5} key={item.length} borderRadius={'8px'} boxShadow={'0px 0px 14px rgba(34, 60, 80, 0.2)'} > 
+          <Box   width={'auto'} height={'auto'}>
           <Image borderLeftRadius={'8px'} width={'100%'} objectFit={'cover'}  src={item.images[0]}  />
           </Box>
         <Box justifyContent={'space-between'} display={'flex'} alignItems={'center'} width={'80%'}> 
         <Box p={2}>
-            <Heading>{item.title}</Heading>
-            <Text w={'450px'}>{item.description}</Text>
+            <Heading size={{base:'xs',md:'md'}}>{item.title}</Heading>
+            <Text w={'92%'}>{item.description}</Text>
             
           </Box>
           <Box  display={'flex'}>
@@ -47,7 +48,7 @@ export const Basket = () => {
       <Heading mt={'4%'} size={'md'}>{count}</Heading>
       <Button onClick={() => setCount(count + 1,item.price + item.price)}>+</Button>
 </Box>
-          <Heading m={'4% 2% 0% 4%'} size={'md'}>${item.price}</Heading>
+          <Heading m={'4% 2% 0% 4%'} size={'md'}>${Todo.price}</Heading>
           <Button colorScheme="orange" onClick={()=>deleteOne(item.id)}>Delete</Button>
           </Box>
         </Box>

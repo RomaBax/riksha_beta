@@ -1,0 +1,8 @@
+header .shop-cart-button.active,
+    header .shop-cart-button:hover{
+    display: none;
+}
+header .shop-cart-button{
+cursor: pointer;
+transition: color 500ms ease;
+}

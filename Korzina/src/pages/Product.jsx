@@ -11,6 +11,7 @@ import sushi1 from '../assets/1.png'
 import sushi2 from '../assets/2.png'
 import sushi3 from '../assets/3.png'
 import sushi4 from '../assets/4.png'
+import './style.css'
 import sushi5 from '../assets/5.png'
 import sushi6 from '../assets/6.png'
 import { FaInstagram } from "react-icons/fa";
@@ -34,11 +35,13 @@ import { Pizza } from "./Pizza";
 import Cart from "../components/Delivery_Cart";
 import { useToast } from "@chakra-ui/react";
 import Carausel from "../components/Carausel";
+import styled from "@emotion/styled";
 
 export const Products = () => {
 
   const [data, setData] = useState([]);
   const {store,setStore} = useContext(BasketContext)
+  const {openCard,setOpenCard} = useState(false)
 
     const settings = {
       dots: true,
@@ -116,7 +119,8 @@ export const Products = () => {
             <Box w={'100%'} justifyContent={'center'} alignItems={'center'} pl={'0%'} gap={'3%'} display={'flex'} mt={'5%'}>
               <Heading size={'lg'}>{product.price}$</Heading>
             <Button size={'lg'} onClick={() => [Del ? setDel(false) : setDel(true), Todo(product)]}>Купить</Button>
-              <Button size={'lg'} bgImage={Button1} colorScheme='orange' onClick={() => setStore((el) => [ ...el, product ])} >
+ 
+             <Button size={'lg'} bgImage={Button1} colorScheme='orange'  onClick={() => setStore((el) => [ ...el, product ])} >
                 <Text>В корзину</Text>
               </Button>
               </Box>
