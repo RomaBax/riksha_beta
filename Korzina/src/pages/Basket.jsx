@@ -13,11 +13,6 @@ export const Basket = () => {
   const [price, setPrice] = useState()
   let Todo = item => {setPrice(item.price)}
 
-  const decreaseCount = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
   
 
   const deleteOne = (id)=>{
@@ -33,7 +28,7 @@ export const Basket = () => {
       }
       {store.map((item) => (
         <HStack mt={'2%'} pr={'1%'}  mb={5} key={item.length} borderRadius={'8px'} boxShadow={'0px 0px 14px rgba(34, 60, 80, 0.2)'} > 
-          <Box   width={'auto'} height={'auto'}>
+          <Box   width={{base:'15%',sm:'20%',md:'25%',lg:'30%',xl:'15%','2xl':'15%'}}  >
           <Image borderLeftRadius={'8px'} width={'100%'} objectFit={'cover'}  src={item.images[0]}  />
           </Box>
         <Box justifyContent={'space-between'} display={'flex'} alignItems={'center'} width={'80%'}> 
@@ -43,12 +38,8 @@ export const Basket = () => {
             
           </Box>
           <Box  display={'flex'}>
-<Box display={'flex'} gap={'5%'}>
-          <Button onClick={decreaseCount}>-</Button>
-      <Heading mt={'4%'} size={'md'}>{count}</Heading>
-      <Button onClick={() => setCount(count + 1,item.price + item.price)}>+</Button>
-</Box>
-          <Heading m={'4% 2% 0% 4%'} size={'md'}>${Todo.price}</Heading>
+
+          <Heading m={'4% 2% 0% 4%'} size={'md'}>${item.price}</Heading>
           <Button colorScheme="orange" onClick={()=>deleteOne(item.id)}>Delete</Button>
           </Box>
         </Box>
