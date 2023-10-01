@@ -2,6 +2,7 @@ import { useContext,useState } from "react";
 import { BasketContext } from "../context/BasketContext";
 import { Box, Button, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import trash from '../assets/trash.svg'
+import { useToast } from "@chakra-ui/react";
 export const Basket = () => {
   const { store ,setStore} = useContext(BasketContext);
   console.log(store);
@@ -9,6 +10,7 @@ export const Basket = () => {
     setStore([])
   }
 
+  const toast = useToast()
   const [count, setCount] = useState(0);
   const [price, setPrice] = useState()
   let Todo = item => {setPrice(item.price)}
@@ -34,7 +36,7 @@ export const Basket = () => {
         <Box justifyContent={'space-between'} display={'flex'} alignItems={'center'} width={'80%'}> 
         <Box p={2}>
             <Heading size={{base:'xs',md:'md'}}>{item.title}</Heading>
-            <Text w={'92%'}>{item.description}</Text>
+            <Text display={{base:'none', sm:'flex'}} w={'92%'}>{item.description}</Text>
             
           </Box>
           <Box  display={'flex'}>
@@ -50,7 +52,17 @@ export const Basket = () => {
       
       {store.length &&  <Button my={10} onClick={onDelete} colorScheme="orange"  justifyContent={'center'} gap={2}>Delete all <Image color={'white'} src={trash}/></Button>}
     <Button w={'100%'} height={'2px'}></Button>
-    <Button>Заказать</Button>
+    <Button
+    colorScheme={'orange'}
+          onClick={() =>
+            toast({
+              title: 'Заказ принят',
+              description: "Ожидайте",
+              status: 'success',
+              duration: 9000,
+              isClosable: true,
+            })
+          }>Заказать</Button>
     </Box>
   );
 };
